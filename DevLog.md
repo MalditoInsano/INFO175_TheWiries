@@ -13,3 +13,5 @@ Taller de Construcción de Software
   -La posibilidad de destacar al hacer mouse over sobre algun grupo o actividad, para comparar entre otros, haciendo gris el resto.
   
   Prezi 2: https://prezi.com/xhyc6x_1enqc/analisis-de-curso/
+
+ 
