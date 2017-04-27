@@ -14,4 +14,11 @@ Taller de Construcción de Software
   
   Prezi 2: https://prezi.com/xhyc6x_1enqc/analisis-de-curso/
 
+27/04/17 Feedback de la Presentación
+
+  -1 Barra por cada actividad o 1 barra por cada grupo en actividad.
+  
+  -En caso de tener demasiados problemas con la visualización cambiarla.
+  
+  -Al hacer mouse over destaca otras barras. Idea ya existente, pero implementada de distinta forma de momento.
  
