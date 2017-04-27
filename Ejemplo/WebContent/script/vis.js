@@ -57,17 +57,17 @@ function loadData(){
 
 $(window).ready(function() {
     loadData(); // llama a la función loadData más arriba
-    var width = 500,
-    height = 500,
+    var width = 500,//500
+    height = 700,
     start = 0,
-    end = 2.25,
-    numSpirals = 3
-    margin = {top:50,bottom:50,left:50,right:50};
+    end = 2,//2.25, hace... algo...
+    numSpirals = 2,
+    margin = {top:50,bottom:50,left:200,right:50};
 
     var theta = function(r) {
     return numSpirals * Math.PI * r;
     };
-
+    
     // used to assign nodes color by group
     var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -75,7 +75,7 @@ $(window).ready(function() {
 
     var radius = d3.scaleLinear()
     .domain([start, end])
-    .range([40, r]);//radio central(espacio vacío)
+    .range([30, r]);//radio central(espacio vacío)
 
     var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -98,19 +98,34 @@ $(window).ready(function() {
     .style("stroke", "steelblue");
 
     var spiralLength = path.node().getTotalLength(),
-      N = 365,
+      N = 144,
       barWidth = (spiralLength / N) - 1;
-    var someData = [];
-    for (var i = 0; i < N; i++) {
-    var currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + i);
-    someData.push({
-      date: currentDate,
-      value: Math.random(),
-      group: currentDate.getMonth()
-    });
+    var someData = [];//{date:10,value:0.67,group:3},{date:100,value:0.67,group:3},{date:110,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},];
+    /*for(var i=0; i< (N/4); i++){
+    	for(var j=0; j<4;j++){
+    		var currentDate = new Date();
+    		currentDate.setDate(currentDate.getDate() + (4*i)+j+5);
+    		someData.push({
+			      date: currentDate,
+			      value: Math.random(),
+			      group: j
+			    });
+    	}
+    }*/
+    for (var i = 0; i < (N)/12; i++) {
+    	var currentDate = new Date(Date.parse("March 1, 2017"));
+	    currentDate.setMonth(currentDate.getMonth() + i);
+    	for(var j = 0; j < 3; j++){
+    		for(var k = 0; k < 4; k++){
+       			currentDate.setDate(currentDate.getDate() +(4*j) +k);
+			    someData.push({
+			      date: currentDate,
+			      value: Math.random(),
+			      group: k
+			    });
+	    	}
+    	}
     }
-
     var timeScale = d3.scaleTime()
     .domain(d3.extent(someData, function(d){
       return d.date;
@@ -158,7 +173,7 @@ $(window).ready(function() {
     });
 
     // add date labels
-    var tF = d3.timeFormat("%b %Y"),
+    var tF = d3.timeFormat("%b "),
       firstInMonth = {};
 
     svg.selectAll("text")
@@ -205,13 +220,13 @@ $(window).ready(function() {
       tooltip.select('.value').html("Value: <b>" + Math.round(d.value*100)/100 + "<b>");
 
       d3.select(this)
-      .style("fill","#FFFFFF")
+      .style("fill","#FFF")
       .style("stroke","#000000")
       .style("stroke-width","2px");
-
+      
       tooltip.style('display', 'block');
       tooltip.style('opacity',2);
-
+      
     })
     .on('mousemove', function(d) {
       tooltip.style('top', (d3.event.layerY + 10) + 'px')
