@@ -17,7 +17,7 @@ Taller de Construcción de Software
   - Prezi 2: https://prezi.com/xhyc6x_1enqc/analisis-de-curso/
   >___
 
-### 27/04/17 Feedback de la Presentación
+### 27/04/17 Feedback de la Presentación:
 
   - 1 Barra por cada actividad o 1 barra por cada grupo en actividad.
   
@@ -26,3 +26,14 @@ Taller de Construcción de Software
   - Al hacer mouse over destaca otras barras. Idea ya existente, pero implementada de distinta forma de momento.
  >___
  
+ ### 04/05/17 Notas:
+ 
+  - Retroalimentación (9:53 - 10:25~):
+  
+  > Explicamos y modificamos el mockup.
+  
+  > Definimos que puntos del proyecto faltan por implementar.
+  
+  > Se nos propuso poner un grado de importancia a las tareas anterior definidas (Alta, media, baja).
+  
+  -
