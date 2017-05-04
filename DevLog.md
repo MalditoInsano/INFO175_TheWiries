@@ -28,9 +28,8 @@ Taller de Construcción de Software
  
  ### 04/05/17 Notas:
  
-  - Retroalimentación (9:53 - 10:25~):
-  
-  > Explicamos y modificamos el mockup.
+ ##### Retroalimentación (9:50 - 10:20):
+  > Explicamos y modificamos el mockup.
   
   > Definimos que puntos del proyecto faltan por implementar.
   
