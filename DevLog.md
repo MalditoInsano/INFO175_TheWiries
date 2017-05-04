@@ -35,4 +35,13 @@ Taller de Construcción de Software
   
   > Se nos propuso poner un grado de importancia a las tareas anterior definidas (Alta, media, baja).
   
-  -
+  > Se nos indicó que definieramos que actividad realizaria cada uno.
+  
+  > Que definamos que semana usariamos para que, junto con ver que actividad son dependientes y cuales independientes.
+  
+##### Actividad post-retroalimentación:
+  
+  - Definimos prioridad de las actividades.
+  
+  - Determinamos quien estaria a cargo de actividades a realizar.
+ 
