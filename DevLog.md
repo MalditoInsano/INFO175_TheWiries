@@ -44,4 +44,4 @@ Taller de Construcción de Software
   - Definimos prioridad de las actividades.
   
   - Determinamos quien estaria a cargo de actividades a realizar.
- 
+  >___
