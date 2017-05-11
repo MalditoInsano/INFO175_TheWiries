@@ -1,5 +1,7 @@
 //Formato
+
 [
+
 	{ 
 		"value":int, 			            //value del ejercicio
 		"color":int,						//determina el color de la barra y por ende, el tipo de ejercicio 0-3
@@ -18,7 +20,9 @@
 
 
 //Ejemplo
+
 [
+
 	{ 
 		value:0.7,
 		color:1,
