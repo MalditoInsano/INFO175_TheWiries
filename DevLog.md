@@ -51,3 +51,7 @@ Taller de Construcción de Software
   ##### Posible código de espiral paralelo:
   - http://jsfiddle.net/jingshaochen/xJc7M/
   - https://gist.github.com/icchan/1105803
+  
+  - Inicio del uso de MySQL, junto al uso de data.
+  
+  - Update de las especificaciones.
