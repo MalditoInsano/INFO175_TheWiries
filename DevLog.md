@@ -44,4 +44,10 @@ Taller de Construcción de Software
   - Definimos prioridad de las actividades.
   
   - Determinamos quien estaria a cargo de actividades a realizar.
- 
+  >___
+  
+  ### 11/05/17 Notas:
+  
+  ##### Posible código de espiral paralelo:
+  - http://jsfiddle.net/jingshaochen/xJc7M/
+  - https://gist.github.com/icchan/1105803

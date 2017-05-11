@@ -9,3 +9,16 @@
  | 7 | Filtros (Modulo) (Combobox) |  | Alta | Seba | 0% |
  | 8 | Linea de Comparación |  | Media-alta | Felipe | 0% |
  | 9 | Espiral (Modulo) | 2,3,4,5,8 |  |  | 5% |
+
+
+ | ID | Tarea/Funcionalidad | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+ | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+ | 1 | Dar Formato .md | X |  |  |  |  |  |  |  |  |
+ | 2 | *"Hackear"* control por fechas | X | X |  |  |  |  |  |  |  |
+ | 3 | Leyenda | - | - | - | X |  |  |  |  |  |
+ | 4 | Focalización | X | X |  |  |  |  |  |  |  |
+ | 5 | Separación |  |  | X |  |  |  |  |  |  |
+ | 6 | Zoom (Modulo) | - | - | X | X | X |  |  |  |  |
+ | 7 | Filtros (Modulo) (Combobox) | X | X |  |  |  |  |  |  |  |
+ | 8 | Linea de Comparación | X | X |  |  |  |  |  |  |  |
+ | 9 | Espiral (Modulo) | - | - | - | - | - | - | - | - | - |

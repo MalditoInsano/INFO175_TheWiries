@@ -1,45 +1,58 @@
 //Formato
+
 [
+
 	{ 
-		"value":[int,int,int,int], 			//value de cada tipo-ejercicio
-											// Su posición determina el tipo-ejercicio y su color
-		"group":integer 					//id del grupo 1-3
-	    "topico": string[]					//Unidad, Posición eje X
+		"value":int, 			            //value del ejercicio
+		"color":int,						//determina el color de la barra y por ende, el tipo de ejercicio 0-3
+		"group":integer, 					//id del grupo 1-3
+		"data": date,				     	//Fecha correspondiente a la posicion en Eje X
+	    "topico": string[]					//Unidad (tópico) del curso
 	},
 	{ 
-		"value":[int,int,int,int], 			//value de cada tipo-ejercicio
-											// Su posición determina el tipo-ejercicio y su color
-		"group":integer 					//id del grupo 1-3
-	    "topico": string[]					//Unidad, Posición eje X
+		"value":int, 			            //value de cada tipo-ejercicio
+		"color":int,						//determina el color de la barra y por ende, el tipo de ejercicio 0-3
+		"group":integer, 					//id del grupo 1-3
+		"data": date,				     	//Fecha correspondiente a la posicion en Eje X
+	    "topico": string[]					//Unidad (tópico) del curso
 	}
 ]
 
 
 //Ejemplo
+
 [
+
 	{ 
-		value:[0.6,0.75,10,8],
+		value:0.7,
+		color:1,
 		group:1,
 	    topico: "if-while"
 	},
 	{ 
-		value:[0.42,0.55,6,15],
-		group:2,
-	    topico: "if-while"
-	},
-	{ 
-		value:[0.26,0.90,17,6],
-		group:3,
-	    topico: "if-while"
-	},
-	{ 
-		value:[0.7,0.24,6,18],
+		value:0.54,
+		color:2,
 		group:1,
-	    topico: "boolean"
-	},
-	{ 
-		value:[0.85,0.7,10,5],
+	    topico: "if-while"
+	},{ 
+		value:0.89,
+		color:3,
+		group:1,
+	    topico: "if-while"
+	},{ 
+		value:0.72,
+		color:4,
+		group:1,
+	    topico: "if-while"
+	},{ 
+		value:0.17,
+		color:1,
 		group:2,
-	    topico: "boolean"
-	}
+	    topico: "if-while"
+	},{ 
+		value:0.23,
+		color:2,
+		group:2,
+	    topico: "if-while"
+	},
 ]
