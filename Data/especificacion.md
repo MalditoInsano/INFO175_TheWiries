@@ -1,58 +1,52 @@
-//Formato
+# Servicios
+## GetDataByGroup
 
+### Descripción
+El servicio resume la información de actividades de los distintos tipos por grupos, entregandonos solo aquello que nos sirve.
+
+### Salida
+
+```javascript
 [
-
-	{ 
-		"value":int, 			            //value del ejercicio
-		"color":int,						//determina el color de la barra y por ende, el tipo de ejercicio 0-3
-		"group":integer, 					//id del grupo 1-3
-		"data": date,				     	//Fecha correspondiente a la posicion en Eje X
-	    "topico": string[]					//Unidad (tópico) del curso
-	},
-	{ 
-		"value":int, 			            //value de cada tipo-ejercicio
-		"color":int,						//determina el color de la barra y por ende, el tipo de ejercicio 0-3
-		"group":integer, 					//id del grupo 1-3
-		"data": date,				     	//Fecha correspondiente a la posicion en Eje X
-	    "topico": string[]					//Unidad (tópico) del curso
-	}
+	User,
+	...
 ]
 
+//User object
+{ 	
+	"userid": "noname160005"				//ID del usuario.
+	"vis": "1",								//ID del grupo (1,2 o 3).
+	"q_att": "10" 							//Cantidad de Quizjet intentados.
+	"q_att_succ": "6"						//Quizjet exitosos.
+	"p_att": "16",				    		//Intentos en Parsons.
+	"p_att_succ": "16"						//Parsons exitosos.
+	"dist_e": "3"							//Examples completados.
+	"e_lines": "12"							//Lineas de Examples vistas.
+	"dist_ae": "5"							//Animated Examples completados.
+	"ae_lines": "21"						//Lineas de Animated Examples vistas.
+	"q_time": "200"							//Tiempo total de Quizjet.
+	"p_time": "301"							//Tiempo total de Parsons.
+	"e_time": "400"							//Tiempo total de Examples.
+	"ae_time": "362"						//Tiempo total de Animated Examples.
+```
 
-//Ejemplo
+### Consulta SQL
+```SQL
+select A.`user`, S.treatments_16 as vis,
+	sum(if(A.appid=41,1,0)) as q_att, 
+	sum(if(A.appid=41 AND A.result=1,1,0)) as q_att_succ, 
+	sum(if(A.appid=38,1,0)) as p_att, 
+	sum(if(A.appid=38 AND result=1,1,0)) as p_att_succ, 
+	count(distinct(if(A.appid=3,A.parentname,0)))-1 as dist_e, 
+	sum(if(A.appid=3,1,0)) as e_lines, 
+	count(distinct(if(A.appid=35,A.parentname,0)))-1 as dist_ae, 
+	sum(if(A.appid=35,1,0)) as ae_lines,
+	sum(if(A.appid=41,A.durationseconds,0)) as q_time, 
+	sum(if(A.appid=38,A.durationseconds,0)) as p_time, 
+	sum(if(A.appid=3,A.durationseconds,0)) as e_time, 
+	sum(if(A.appid=35,A.durationseconds,0)) as ae_time 
+from activity_traces A, student_info S 
+	where A.`user` = S.`userid` and A.durationseconds > 0 and A.appid > -1 
+	group by S.treatments_16
+```
 
-[
-
-	{ 
-		value:0.7,
-		color:1,
-		group:1,
-	    topico: "if-while"
-	},
-	{ 
-		value:0.54,
-		color:2,
-		group:1,
-	    topico: "if-while"
-	},{ 
-		value:0.89,
-		color:3,
-		group:1,
-	    topico: "if-while"
-	},{ 
-		value:0.72,
-		color:4,
-		group:1,
-	    topico: "if-while"
-	},{ 
-		value:0.17,
-		color:1,
-		group:2,
-	    topico: "if-while"
-	},{ 
-		value:0.23,
-		color:2,
-		group:2,
-	    topico: "if-while"
-	},
-]
