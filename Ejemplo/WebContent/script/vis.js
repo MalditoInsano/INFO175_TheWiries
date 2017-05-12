@@ -32,7 +32,7 @@ function displayData(res){
         $( "#data_table" ).append( "<tr><td>" + row.userid + "</td>" + "<td>" + row.applabel + "</td>" + "<td>" + row.activitycount + "</td></tr>\n");
     }
     
-    //$( "#working_area" ).append("</table>");
+    $( "#working_area" ).append("</table>");
 }
 
 /**
@@ -47,7 +47,7 @@ function displayData(res){
  * asíncronas (leer un poco de AJAX sería bastante bueno!). 
  */
 function loadData(){
-    var url = CONST.uriServer + "GetSampleData";
+	var url = CONST.uriServer + "GetSampleData";
     
     $.getJSON( url , function(data){
         displayData(data);
@@ -98,57 +98,67 @@ $(window).ready(function() {
     .style("stroke", "steelblue");
 
     var spiralLength = path.node().getTotalLength(),
-      N = 144,
+      N = 24,
       barWidth = (spiralLength / N) - 1;
-    var someData = [];//{date:10,value:0.67,group:3},{date:100,value:0.67,group:3},{date:110,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},{date:10,value:0.67,group:3},];
-    /*for(var i=0; i< (N/4); i++){
-    	for(var j=0; j<4;j++){
-    		var currentDate = new Date();
-    		currentDate.setDate(currentDate.getDate() + (4*i)+j+5);
-    		someData.push({
-			      date: currentDate,
-			      value: Math.random(),
-			      group: j
-			    });
-    	}
-    }*/
-    for (var i = 0; i < (N)/12; i++) {
-    	var currentDate = new Date(Date.parse("March 1, 2017"));
-	    currentDate.setMonth(currentDate.getMonth() + i);
-    	for(var j = 0; j < 3; j++){
-    		for(var k = 0; k < 4; k++){
-       			currentDate.setDate(currentDate.getDate() +(4*j) +k);
-			    someData.push({
-			      date: currentDate,
-			      value: Math.random(),
-			      group: k
-			    });
-	    	}
-    	}
+    var testData = [{date:10,value:0.67,group:3},
+    				{date:100,value:0.67,group:3},
+    				{date:110,value:0.67,group:3},
+    				{date:10,value:0.67,group:3},
+    				{date:10,value:0.67,group:3},
+    				{date:10,value:0.67,group:3},
+    				{date:10,value:0.67,group:3},
+    				{date:10,value:0.67,group:3},
+    				{date:10,value:0.67,group:3}];
+    /*var testData = [
+    	{value:0.4,		color:0,	group:1,	date:1	,	topico:"if-while"},
+    	{value:0.45,	color:1,	group:1,	date:2	,	topico:"if-while"},
+    	{value:0.74,	color:2,	group:1,	date:3	,	topico:"if-while"},
+    	{value:0.14,	color:3,	group:1,	date:4	,	topico:"if-while"},
+    	{value:0.26,	color:0,	group:2,	date:5	,	topico:"if-while"},
+    	{value:0.67,	color:1,	group:2,	date:6	,	topico:"if-while"},
+    	{value:0.4,		color:2,	group:2,	date:7	,	topico:"if-while"},
+    	{value:0.24,	color:3,	group:2,	date:8	,	topico:"if-while"},
+    	{value:0.29,	color:0,	group:3,	date:9	,	topico:"if-while"},
+    	{value:0.1,		color:1,	group:3,	date:10	,	topico:"if-while"},
+    	{value:0.29,	color:2,	group:3,	date:11	,	topico:"if-while"},
+    	{value:0.78,	color:3,	group:3,	date:12	,	topico:"if-while"},
+    	{value:0.34,	color:0,	group:4,	date:13	,	topico:"if-while"},
+    	{value:0.23,	color:1,	group:4,	date:14	,	topico:"if-while"},
+    	{value:0.3,		color:2,	group:4,	date:15	,	topico:"if-while"},
+    	{value:0.9,		color:3,	group:4,	date:16	,	topico:"if-while"},
+    	{value:0.67,	color:0,	group:1,	date:17	,	topico:"loremipsum"},
+    	{value:0.12,	color:1,	group:1,	date:18	,	topico:"loremipsum"},
+    	{value:0.34,	color:2,	group:1,	date:19	,	topico:"loremipsum"},
+    	{value:0.44,	color:3,	group:1,	date:20	,	topico:"loremipsum"}
+    	];*/
+    for (var i = 0; i < N; i++) {
+        	var currentDate = new Date();
+        	currentDate.setDate(currentDate.getDate() + testDate[i].date);
+            testData[i].date = currentDate;
+        
     }
     var timeScale = d3.scaleTime()
-    .domain(d3.extent(someData, function(d){
+    .domain(d3.extent(testData, function(d){
       return d.date;
     }))
     .range([0, spiralLength]);
-
-    // yScale for the bar height
-    var yScale = d3.scaleLinear()
-    .domain([0, d3.max(someData, function(d){
+  
+  // yScale for the bar height
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(testData, function(d){
       return d.value;
     })])
     .range([0, (r / numSpirals) - 30]);
 
     svg.selectAll("rect")
-    .data(someData)
+    .data(testData)
     .enter()
     .append("rect")
     .attr("x", function(d,i){
       
       var linePer = timeScale(d.date),
-          posOnLine = path.node().getPointAtLength(linePer),
-          angleOnLine = path.node().getPointAtLength(linePer - barWidth);
-
+      posOnLine = path.node().getPointAtLength(linePer),
+      angleOnLine = path.node().getPointAtLength((linePer) - barWidth);
       d.linePer = linePer; // % distance are on the spiral
       d.x = posOnLine.x; // x postion on the spiral
       d.y = posOnLine.y; // y position on the spiral
@@ -166,7 +176,7 @@ $(window).ready(function() {
     .attr("height", function(d){
       return yScale(d.value);
     })
-    .style("fill", function(d){return color(d.group);})
+    .style("fill", function(d){return color(d.color);})
     .style("stroke", "none")
     .attr("transform", function(d){
       return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
@@ -177,7 +187,7 @@ $(window).ready(function() {
       firstInMonth = {};
 
     svg.selectAll("text")
-    .data(someData)
+    .data(testData)
     .enter()
     .append("text")
     .attr("dy", 10)
@@ -216,7 +226,7 @@ $(window).ready(function() {
     svg.selectAll("rect")
     .on('mouseover', function(d) {
 
-      tooltip.select('.date').html("Date: <b>" + d.date.toDateString() + "</b>");
+      //tooltip.select('.date').html("Date: <b>" + d.topico.toDateString() + "</b>");
       tooltip.select('.value').html("Value: <b>" + Math.round(d.value*100)/100 + "<b>");
 
       d3.select(this)
@@ -234,7 +244,7 @@ $(window).ready(function() {
     })
     .on('mouseout', function(d) {
       d3.selectAll("rect")
-      .style("fill", function(d){return color(d.group);})
+      .style("fill", function(d){return color(d.color);})
       .style("stroke", "none")
 
       tooltip.style('display', 'none');
