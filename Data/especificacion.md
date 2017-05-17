@@ -14,19 +14,19 @@ El servicio resume la información de actividades de los distintos tipos por gru
 
 //Group object
 { 	
-	"groupnum": "1"							//Número del grupo.
-	"q_att": "10" 							//Cantidad de Quizjet intentados por topico.
-	"q_att_succ": "6"						//Quizjet exitosos por topico.
-	"p_att": "16",				    			//Intentos en Parsons por topico.
-	"p_att_succ": "16"						//Parsons exitosos por topico.
-	"dist_e": "3"							//Examples completados por topico.
-	"e_lines": "12"							//Lineas de Examples vistas.
-	"dist_ae": "5"							//Animated Examples completados.
-	"ae_lines": "21"						//Lineas de Animated Examples vistas.
-	"q_time": "200"							//Tiempo promedio de Quizjet.
-	"p_time": "301"							//Tiempo promedio de Parsons.
-	"e_time": "400"							//Tiempo promedio de Examples.
-	"ae_time": "362"						//Tiempo promedio de Animated Examples.
+	"groupnum": "1"						//Número del grupo.
+	"q_att": "10" 						//Cantidad de Quizjet intentados por topico.
+	"q_att_succ": "6"					//Quizjet exitosos por topico.
+	"p_att": "16",				    		//Intentos en Parsons por topico.
+	"p_att_succ": "16"					//Parsons exitosos por topico.
+	"dist_e": "3"						//Examples completados por topico.
+	"e_lines": "12"						//Lineas de Examples vistas.
+	"dist_ae": "5"						//Animated Examples completados.
+	"ae_lines": "21"					//Lineas de Animated Examples vistas.
+	"q_time": "200"						//Tiempo promedio de Quizjet.
+	"p_time": "301"						//Tiempo promedio de Parsons.
+	"e_time": "400"						//Tiempo promedio de Examples.
+	"ae_time": "362"					//Tiempo promedio de Animated Examples.
 }
 ```
 
