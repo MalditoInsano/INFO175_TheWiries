@@ -8,31 +8,31 @@ El servicio resume la información de actividades de los distintos tipos por gru
 
 ```javascript
 [
-	User,
+	Group,
 	...
 ]
 
-//User object
+//Group object
 { 	
-	"userid": "noname160005"				//ID del usuario.
-	"vis": "1",								//ID del grupo (1,2 o 3).
-	"q_att": "10" 							//Cantidad de Quizjet intentados.
-	"q_att_succ": "6"						//Quizjet exitosos.
-	"p_att": "16",				    		//Intentos en Parsons.
-	"p_att_succ": "16"						//Parsons exitosos.
-	"dist_e": "3"							//Examples completados.
+	"groupnum": "1"							//Número del grupo.
+	"q_att": "10" 							//Cantidad de Quizjet intentados por topico.
+	"q_att_succ": "6"						//Quizjet exitosos por topico.
+	"p_att": "16",				    			//Intentos en Parsons por topico.
+	"p_att_succ": "16"						//Parsons exitosos por topico.
+	"dist_e": "3"							//Examples completados por topico.
 	"e_lines": "12"							//Lineas de Examples vistas.
 	"dist_ae": "5"							//Animated Examples completados.
 	"ae_lines": "21"						//Lineas de Animated Examples vistas.
-	"q_time": "200"							//Tiempo total de Quizjet.
-	"p_time": "301"							//Tiempo total de Parsons.
-	"e_time": "400"							//Tiempo total de Examples.
-	"ae_time": "362"						//Tiempo total de Animated Examples.
+	"q_time": "200"							//Tiempo promedio de Quizjet.
+	"p_time": "301"							//Tiempo promedio de Parsons.
+	"e_time": "400"							//Tiempo promedio de Examples.
+	"ae_time": "362"						//Tiempo promedio de Animated Examples.
+}
 ```
 
 ### Consulta SQL
 ```SQL
-select A.`user`, S.treatments_16 as vis,
+select A.`user`, S.treatments_16 as vis,  			//¡user cambiar por group?
 	sum(if(A.appid=41,1,0)) as q_att, 
 	sum(if(A.appid=41 AND A.result=1,1,0)) as q_att_succ, 
 	sum(if(A.appid=38,1,0)) as p_att, 
