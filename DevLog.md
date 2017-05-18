@@ -55,3 +55,9 @@ Taller de Construcción de Software
   - Inicio del uso de MySQL, junto al uso de data.
   
   - Update de las especificaciones.
+
+  ### 18/05/17 Notas:
+
+  - Se nos entregan nuevas tareas: Visualización, Servicios y Documentación.
+
+  - 
