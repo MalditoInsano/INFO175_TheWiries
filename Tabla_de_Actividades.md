@@ -7,7 +7,7 @@
  | 5 | Separación | Separación entre grupos y entre actividades | Baja |  | 0% |
  | 6 | Zoom (Modulo) |  | Media-alta |  | 0% |
  | 7 | Filtros (Modulo) (Combobox) |  | Alta | Seba | 5% |
- | 8 | Linea de Comparación |  | Media-alta | Felipe | 7% |
+ | 8 | Linea de Comparación |  | Media-alta | Felipe | 45% |
  | 9 | Espiral (Modulo) | 2,3,4,5,8 |  |  | 5% |
 
 
