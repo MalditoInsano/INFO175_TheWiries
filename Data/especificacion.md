@@ -8,25 +8,26 @@ El servicio resume la información de actividades de los distintos tipos por gru
 
 ```javascript
 [
-	Group,
+	Topico
 	...
 ]
 
-//Group object
+//Topico object
 { 	
 	"groupnum": "1"						//Número del grupo.
+	"c.group": "20"						//Cantidad de gente en el grupo
 	"q_att": "10" 						//Cantidad de Quizjet intentados por topico.
 	"q_att_succ": "6"					//Quizjet exitosos por topico.
 	"p_att": "16",				    		//Intentos en Parsons por topico.
 	"p_att_succ": "16"					//Parsons exitosos por topico.
 	"dist_e": "3"						//Examples completados por topico.
-	"e_lines": "12"						//Lineas de Examples vistas.
-	"dist_ae": "5"						//Animated Examples completados.
-	"ae_lines": "21"					//Lineas de Animated Examples vistas.
-	"q_time": "200"						//Tiempo promedio de Quizjet.
-	"p_time": "301"						//Tiempo promedio de Parsons.
-	"e_time": "400"						//Tiempo promedio de Examples.
-	"ae_time": "362"					//Tiempo promedio de Animated Examples.
+	"e_lines": "12"						//Lineas de Examples vistas en cada topico.
+	"dist_ae": "5"						//Animated Examples completados en cada topico.
+	"ae_lines": "21"					//Lineas de Animated Examples vistas por topico.
+	"q_time": "200"						//Tiempo total de Quizjet separado por topico.
+	"p_time": "301"						//Tiempo total de Parsons separado por topico.
+	"e_time": "400"						//Tiempo total de Examples separado por topico..
+	"ae_time": "362"					//Tiempo total de Animated Examples separado por topico..
 }
 ```
 
@@ -45,7 +46,7 @@ select A.`user`, S.treatments_16 as vis,  			//¡user cambiar por group?
 	sum(if(A.appid=38,A.durationseconds,0)) as p_time, 
 	sum(if(A.appid=3,A.durationseconds,0)) as e_time, 
 	sum(if(A.appid=35,A.durationseconds,0)) as ae_time 
-from activity_traces A, student_info S 
+from activity_traces A 
 	where A.`user` = S.`userid` and A.durationseconds > 0 and A.appid > -1 
 	group by S.treatments_16
 ```
