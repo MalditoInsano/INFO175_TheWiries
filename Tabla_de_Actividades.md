@@ -22,6 +22,7 @@
  | 4 | Focalización | X | X |  |  |  |  |  |  |  |
  | 5 | Separación |  |  | X |  |  |  |  |  |  |
  | 6 | Zoom (Modulo) | - | - | X | X | X |  |  |  |  |
- | 7 | Filtros (Modulo) (Combobox) | X | X |  |  |  |  |  |  |  |
+ | 7 | Filtros (Modulo) (Combobox) |  |  |  |  |  | X | X |  |  |
  | 8 | Linea de Comparación | X | X |  |  |  |  |  |  |  |
  | 9 | Espiral (Modulo) | - | - | - | - | - | - | - | - | - |
+ | 10 | Servicio de Datos |  |  | X | X | X |  |  |  |  |
