@@ -36,13 +36,16 @@ El servicio resume la información de actividades de los distintos tipos por gru
 ### Consulta SQL
 
 ```Sql
-select S.treatments_16, A.topicname as id, count(*) as activity, count(distinct(A.`user`)) as `users` ,
+select S.treatments_16, A.topicname as id, count(*) as activity, count(distinct(A.`user`)) as `users`,
 	sum(if(A.appid=41,1,0)) as quizpet_act, 
 	sum(if(A.appid=41 and  A.result=1,1,0)) as quizpet_act_correct,
 	sum(if(A.appid=38,1,0)) as parsons_act, 
 	sum(if(A.appid=38 and A.result=1,1,0)) as parsons_act_succ,
 	sum(if(appid=3,1,0)) as webex_act,
 	sum(if(appid=35,1,0)) as animatedexamples_act
+	/**
+	* Separamos cada actividad por grupo y topico, agrupando los quizpet,parson,examples,animated examples en distintas variables.
+	*/
 from activity_traces A, student_info S 
 	where A.appid > -1 and S.userid = A.`user` 
 	group by S.treatments_16, A.topicname
