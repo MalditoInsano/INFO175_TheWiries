@@ -26,10 +26,19 @@ El servicio resume la información de actividades de los distintos tipos por gru
 {
 	"quizpet_act": ""
 	"quizpet_act_succ": ""
+	/**
+	*Cantidad de quizpet intentados y exitosos respectivamente.
+	*/
 	"parsons_act": ""
 	"parsons_act_succ": ""
+	/**
+	*Número de actividades parsons intentados y exitosos respectivamente.
+	*/
 	"webex_act": ""
 	"animatedexamples_act": ""
+	/**
+	*Cantidad de Web examples y Animated Examples vistos por completo.
+	*/
 }
 ```
 
