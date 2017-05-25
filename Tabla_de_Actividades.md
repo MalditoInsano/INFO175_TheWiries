@@ -14,7 +14,7 @@
  | 12 | Documentación | | Media-Alta | Alfredo | 50% |
 
 
- | ID | Tarea/Funcionalidad | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 |
+ | ID | Tarea/Funcionalidad | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
  | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
  | 1 | Dar Formato .md | X |  |  |  |  |  |  |  |  |
  | 2 | *"Hackear"* control por fechas | X | X | X | X |  |  |  |  |  |
