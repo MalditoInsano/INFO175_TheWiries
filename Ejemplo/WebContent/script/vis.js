@@ -1,7 +1,7 @@
 /**
  * Este archivo javascript contiene la aplicación principal. 
  * El punto de ejecución es la función $(window).ready que se ejecuta 
- * automáticamnete una vez que la página html que arga este .js 
+ * automáticamnete una vez que la página html que carga este .js 
  * termina de cargar
  */
 
@@ -14,7 +14,7 @@ var data = null;
 /**
  * Esta función se llama en el call-back de getJSON en loadData
  * @param res representa la data leida del servicio. Se asume que 
- * contiene un arreglo con obetos JSON con los atributos userid, 
+ * contiene un arreglo con objetos JSON con los atributos userid, 
  * applabel y activitycount
  */
 function displayData(res){
@@ -114,7 +114,7 @@ $(window).ready(function() {
   
   // Ciclo iterativo encargado de generar la información de prueba
   // a desplegar en la visualización
-  // Esta se modificara una vez tengamos los servicios funcionando
+  // Obs: Esta se modificará una vez tengamos los servicios funcionando.
   for (var i = 0; i < N/12; i++) {//topico
 	  for(var j=0; j<3; j++){//grupos
 		  for(var k=0;k<4;k++){//tipoEx
@@ -139,7 +139,7 @@ $(window).ready(function() {
     }))
     .range([0, spiralLength]);
   
-  // yScale for the bar height
+  // yScale para la altura
   var yScale = d3.scaleLinear()
     .domain([0, d3.max(testData, function(d){
       return d.value;
@@ -158,10 +158,10 @@ $(window).ready(function() {
           angleOnLine = path.node().getPointAtLength(linePer - barWidth);
     
       d.linePer = linePer; // % distance are on the spiral
-      d.x = posOnLine.x; // x postion on the spiral
-      d.y = posOnLine.y; // y position on the spiral
+      d.x = posOnLine.x; // x posicion en el espiral
+      d.y = posOnLine.y; // y posicion en el espiral
       
-      d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angle at the spiral position
+      d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angulo a la posicion en el espiral
 
       return d.x;
     })
@@ -177,10 +177,10 @@ $(window).ready(function() {
     .style("fill", function(d){return color(d.colors);}) //aquí se el asigna el color
     .style("stroke", "none")
     .attr("transform", function(d){
-      return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
+      return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; //rota la barra
     });
   
-  // add date labels
+  // agrega los titulos (etiquetas)
   var tF = d3.timeFormat("%b %Y"),
       firstInMonth = {};
 
@@ -192,7 +192,7 @@ $(window).ready(function() {
     .style("text-anchor", "start")
     .style("font", "15px arial")
     .append("textPath")
-    // only add for the first of each month
+    // solo se agrega para el primero de cada mes
     .filter(function(d){
       var sd = tF(d.date);
       if (!firstInMonth[sd]){
@@ -204,7 +204,7 @@ $(window).ready(function() {
     .text(function(d){
       return d.top;
     })
-    // place text along spiral
+    // coloca texto a lo largo del espiral
     .attr("xlink:href", "#spiral")
     .style("fill", "blue")
     .attr("startOffset", function(d){

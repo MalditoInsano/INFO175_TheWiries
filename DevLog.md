@@ -60,4 +60,10 @@ Taller de Construcción de Software
 
   - Se nos entregan nuevas tareas: Visualización, Servicios y Documentación.
 
+  - Complementamos tareas anteriores, actualizamos algunos % de avance.
+
+  ### 25/05/17 Notas:
+
+  - Revisamos nuestros avances y de acuerdo con ello, actualizamos la tabla de actvidades.
+
   - 
