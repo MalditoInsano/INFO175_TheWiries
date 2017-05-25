@@ -20,6 +20,7 @@ body,table,select,input  { background-color: #ffffff; font-family: 'Open Sans',C
 #left{
 	padding-left:50px;
 	margin-left:50px;
+	margin-top:70px;
 }
 #down{
 	margin-top:100px;

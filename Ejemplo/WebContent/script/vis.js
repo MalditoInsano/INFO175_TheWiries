@@ -57,21 +57,24 @@ function loadData(){
 
 $(window).ready(function() {
     loadData(); // llama a la función loadData más arriba
+//-------Código de visualización propiamente tal---------
+    //Se definen las variables básicas de la espiral
     var width = 500,
     height = 500,
     start = 0,
     end = 2,
     numSpirals = 2.5
-    margin = {top:200,bottom:50,left:50,right:50};
-
+    margin = {top:1000,bottom:50,left:50,right:50};
+  
   var theta = function(r) {
     return numSpirals * Math.PI * r;
   };
 
-  // used to assign nodes color by group
+  /* asigna el color a las barras de acuerdo al "tipo" de ejercicio 
+    de ese tópico*/
   var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-  var r = d3.min([width, height]) / 2 - 40;
+  //Radio de la espiral de acuerdo a los parámetros anteriores
+  var r = d3.min([width, height]) / 2 - 20;
 
   var radius = d3.scaleLinear()
     .domain([start, end])
@@ -86,25 +89,32 @@ $(window).ready(function() {
   var points = d3.range(start, end + 0.001, (end - start) / 1000);
 
   var spiral = d3.radialLine()
-    .curve(d3.curveCardinal)
+    .curve(d3.curveCardinal.tension(0.5))
     .angle(theta)
     .radius(radius);
-
+  //Genera la espiral a mostrar con el estilo especificado
   var path = svg.append("path")
     .datum(points)
     .attr("id", "spiral")
     .attr("d", spiral)
-    .style("fill", "none")
-    .style("stroke", "steelblue");
-
+    .style("fill", "none") //le quita el relleno a la figura
+    .style("stroke", "steelblue"); //color de línea
+  
+  //Delimita los límites de la espiral, a partir de la cantidad
+  //de info a mostrar (N)
   var spiralLength = path.node().getTotalLength(),
       N = 168,
       barWidth = (spiralLength / N) - 1.3;
+  //TestData es donde se almacena la información a desplegar
   var testData = [];
-  //son 14
+  //cars contiene los nombres de cada tópico del curso
   var cars = ["variables", "compilation", "ifs", "logicalOp", "loops", 
 	  "out format", "functions", "lists", "String", "dictionary",
 	  "RefValues", "Exception", "fileHandling", "class"];
+  
+  // Ciclo iterativo encargado de generar la información de prueba
+  // a desplegar en la visualización
+  // Esta se modificara una vez tengamos los servicios funcionando
   for (var i = 0; i < N/12; i++) {//topico
 	  for(var j=0; j<3; j++){//grupos
 		  for(var k=0;k<4;k++){//tipoEx
@@ -121,7 +131,8 @@ $(window).ready(function() {
 		  }
   	  }
   }
-
+  //Función encargada del procesamiento de fechas 
+  //(Sólo influye en la posicion de despliegue de las barras en la espiral)
   var timeScale = d3.scaleTime()
     .domain(d3.extent(testData, function(d){
       return d.date;
@@ -134,7 +145,8 @@ $(window).ready(function() {
       return d.value;
     })])
     .range([0, (r / numSpirals) -20]);
-
+  
+  //Genera las barras de acuerdo a la data ingresada
   svg.selectAll("rect")
     .data(testData)
     .enter()
@@ -162,7 +174,7 @@ $(window).ready(function() {
     .attr("height", function(d){
       return yScale(d.value);
     })
-    .style("fill", function(d){return color(d.colors);})
+    .style("fill", function(d){return color(d.colors);}) //aquí se el asigna el color
     .style("stroke", "none")
     .attr("transform", function(d){
       return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
@@ -199,11 +211,11 @@ $(window).ready(function() {
       return ((d.linePer / spiralLength) * 100) + "%";
     })
 
-
+  //Codigo encargado de la interacción del usuario con las barras
   var tooltip = d3.select("#chart")
   .append('div')
   .attr('class', 'tooltip');
-
+  //define los atributos a mostrar
   tooltip.append('div')
   .attr('class', 'date');
   tooltip.append('div')
@@ -212,14 +224,14 @@ $(window).ready(function() {
   .attr('class', 'top')
   tooltip.append('div')
   .attr('class', 'group')
-
+  //le agrega la función a todas las barras
   svg.selectAll("rect")
   .on('mouseover', function(d) {
-
+	  //Selecciona y muestra en el recuadro la siguiente info.
       tooltip.select('.value').html("Value: <b>" + Math.round(d.value*100)/100 + "<b>");
       tooltip.select('.top').html("tópico: <b>"+ d.top + "<b>");
       tooltip.select('.group').html("grupo: <b>"+ d.group + "<b>");
-      
+      //estilo del recuadro
       d3.select(this)
       .style("fill","#FFFFFF")
       .style("stroke","#000000")
@@ -229,10 +241,12 @@ $(window).ready(function() {
       tooltip.style('opacity',2);
 
   })
+  //movimiento del recuadro
   .on('mousemove', function(d) {
       tooltip.style('top', (d3.event.layerY + 10) + 'px')
       .style('left', (d3.event.layerX - 25) + 'px');
   })
+  //Devuelve la estado inicial las barras y retira el cuadro de texto
   .on('mouseout', function(d) {
       d3.selectAll("rect")
       .style("fill", function(d){return color(d.colors);})
