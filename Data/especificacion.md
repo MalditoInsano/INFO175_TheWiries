@@ -53,10 +53,15 @@ select S.treatments_16, A.topicname as id, count(*) as activity, count(distinct(
 	sum(if(appid=3,1,0)) as webex_act,
 	sum(if(appid=35,1,0)) as animatedexamples_act
 	/**
-	* Separamos cada actividad por grupo y topico, agrupando los quizpet,parson,examples,animated examples en distintas variables.
+	* Separamos cada actividad por grupo y topico, agrupando los quizpet,parson,examples,
+	*animated examples en distintas variables.
 	*/
 from activity_traces A, student_info S 
 	where A.appid > -1 and S.userid = A.`user` 
 	group by S.treatments_16, A.topicname
 	order by S.treatments_16, A.topicorder
+	/**
+	* Quitamos la informacion que no nos era necesaria(movimientos en interfaz por ejemplo), y entrega
+	*ordenado por grupo y orden de topico(Quizpet, parsons, webex, animated example).
+	*/
 ```
