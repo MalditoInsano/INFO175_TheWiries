@@ -66,4 +66,8 @@ Taller de Construcción de Software
 
   - Revisamos nuestros avances y de acuerdo con ello, actualizamos la tabla de actvidades.
 
-  - 
+  - Recibimos retroalimentacion del profesor (usuario).
+
+  . Se crea nueva tarea: "Recuadro de informacion interactiva".
+
+  - Se debe preparar la presentacion para el dia 01/06.
