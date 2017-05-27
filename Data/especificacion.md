@@ -14,38 +14,41 @@ El servicio resume la información de actividades de los distintos tipos por gru
 
 //Topico object
 {
-	"id": ""
-	"grupo": [Grupo]
+	"id": "",
+	"grupo": [Grupo,
+		  ...
+		 ]
 }
 
-[
-	Grupo
-	...
-]
+
 //Grupo object
 {
-	"quizpet_act": ""
-	"quizpet_act_succ": ""
 	/**
-	*Cantidad de quizpet intentados y exitosos respectivamente.
+	* Número del grupo, con el fin de identificar más facilmente entre ellos.
 	*/
-	"parsons_act": ""
-	"parsons_act_succ": ""
+	"n_group"= "" 
 	/**
-	*Número de actividades parsons intentados y exitosos respectivamente.
+	* Cantidad de quizpet intentados y exitosos respectivamente.
 	*/
-	"webex_act": ""
+	"quizpet_act": "",
+	"quizpet_act_succ": "",
+	/**
+	* Número de actividades parsons intentados y exitosos respectivamente.
+	*/
+	"parsons_act": "",
+	"parsons_act_succ": "",
+	/**
+	* Cantidad de Web examples y Animated Examples vistos por completo.
+	*/
+	"webex_act": "",
 	"animatedexamples_act": ""
-	/**
-	*Cantidad de Web examples y Animated Examples vistos por completo.
-	*/
 }
 ```
 
 ### Consulta SQL
 
 ```Sql
-select S.treatments_16, A.topicname as id, count(*) as activity, count(distinct(A.`user`)) as `users`,
+select S.treatments_16 as n_group, A.topicname as id, count(*) as activity, count(distinct(A.`user`)) as `users`,
 	sum(if(A.appid=41,1,0)) as quizpet_act, 
 	sum(if(A.appid=41 and  A.result=1,1,0)) as quizpet_act_correct,
 	sum(if(A.appid=38,1,0)) as parsons_act, 
