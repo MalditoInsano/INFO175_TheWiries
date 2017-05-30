@@ -39,5 +39,30 @@
 	
     
 
-</body>
+</body> 
+<!-- Creación del espiral de comparación, pero se genera debajo del resto, falta que funcione z-index (permite "profundidad") -->
+<body>
+	<!-- myCanvas genera el cuadro en el que se genera el espiral -->
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;"></canvas>
+    <script type="text/javascript">
+        var c=document.getElementById("myCanvas");
+        var cxt=c.getContext("2d");
+        var centerX = 150; //centerX, y centerY permiten ajustar en que punto parte el espiral.
+        var centerY = 150;
+        cxt.moveTo(centerX, centerY);
+    
+        var gap = 1.8; // Incremento del espacio entre las lineas.
+        var STEPS_PER_ROTATION = 60; // hace que el espiral sea un más o menos grande.
+    	
+	// Va generando la espiral usando Pi para que gire y "gap" un aumento en la distancia.
+        var increment = 2*Math.PI/STEPS_PER_ROTATION;		
+        var theta = increment;
+        while( theta < 20*Math.PI) {
+           var newX = centerX + theta * Math.cos(theta) * gap; 
+           var newY = centerY + theta * Math.sin(theta) * gap; 
+           cxt.lineTo(newX, newY);
+           theta = theta + increment;
+        }
+        cxt.stroke(); // draw the spiral
+    </script></body>
 </html>
