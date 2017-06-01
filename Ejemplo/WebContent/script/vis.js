@@ -1,7 +1,7 @@
 /**
  * Este archivo javascript contiene la aplicación principal. 
  * El punto de ejecución es la función $(window).ready que se ejecuta 
- * automáticamnete una vez que la página html que carga este .js 
+ * automáticamnete una vez que la página html que arga este .js 
  * termina de cargar
  */
 
@@ -14,7 +14,7 @@ var data = null;
 /**
  * Esta función se llama en el call-back de getJSON en loadData
  * @param res representa la data leida del servicio. Se asume que 
- * contiene un arreglo con objetos JSON con los atributos userid, 
+ * contiene un arreglo con obetos JSON con los atributos userid, 
  * applabel y activitycount
  */
 function displayData(res){
@@ -62,7 +62,7 @@ $(window).ready(function() {
     var width = 500,
     height = 500,
     start = 0,
-    end = 2,
+    end = 2.25,
     numSpirals = 2.5
     margin = {top:1000,bottom:50,left:50,right:50};
   
@@ -78,7 +78,7 @@ $(window).ready(function() {
 
   var radius = d3.scaleLinear()
     .domain([start, end])
-    .range([30, r]);
+    .range([20, r]);
 
   var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -89,7 +89,7 @@ $(window).ready(function() {
   var points = d3.range(start, end + 0.001, (end - start) / 1000);
 
   var spiral = d3.radialLine()
-    .curve(d3.curveCardinal.tension(0.5))
+    .curve(d3.curveCardinal)
     .angle(theta)
     .radius(radius);
   //Genera la espiral a mostrar con el estilo especificado
@@ -104,7 +104,7 @@ $(window).ready(function() {
   //de info a mostrar (N)
   var spiralLength = path.node().getTotalLength(),
       N = 168,
-      barWidth = (spiralLength / N) - 1.3;
+      barWidth = (spiralLength / N) - 1;
   //TestData es donde se almacena la información a desplegar
   var testData = [];
   //cars contiene los nombres de cada tópico del curso
@@ -114,13 +114,13 @@ $(window).ready(function() {
   
   // Ciclo iterativo encargado de generar la información de prueba
   // a desplegar en la visualización
-  // Obs: Esta se modificará una vez tengamos los servicios funcionando.
+  // Esta se modificara una vez tengamos los servicios funcionando
   for (var i = 0; i < N/12; i++) {//topico
 	  for(var j=0; j<3; j++){//grupos
 		  for(var k=0;k<4;k++){//tipoEx
 			var currentDate = new Date();
 			currentDate.setMonth(i);
-		  	currentDate.setDate(1 + 8*j+ 2*k );
+			currentDate.setDate(1+(8*j)+(2*k));
 		  	testData.push({
 		  		date: currentDate,
 		  		value: Math.random()+0.3,
@@ -139,12 +139,12 @@ $(window).ready(function() {
     }))
     .range([0, spiralLength]);
   
-  // yScale para la altura
+  // yScale for the bar height
   var yScale = d3.scaleLinear()
     .domain([0, d3.max(testData, function(d){
       return d.value;
     })])
-    .range([0, (r / numSpirals) -20]);
+    .range([0, (r / numSpirals) - 40]);
   
   //Genera las barras de acuerdo a la data ingresada
   svg.selectAll("rect")
@@ -158,10 +158,10 @@ $(window).ready(function() {
           angleOnLine = path.node().getPointAtLength(linePer - barWidth);
     
       d.linePer = linePer; // % distance are on the spiral
-      d.x = posOnLine.x; // x posicion en el espiral
-      d.y = posOnLine.y; // y posicion en el espiral
+      d.x = posOnLine.x; // x postion on the spiral
+      d.y = posOnLine.y; // y position on the spiral
       
-      d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angulo a la posicion en el espiral
+      d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angle at the spiral position
 
       return d.x;
     })
@@ -177,10 +177,10 @@ $(window).ready(function() {
     .style("fill", function(d){return color(d.colors);}) //aquí se el asigna el color
     .style("stroke", "none")
     .attr("transform", function(d){
-      return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; //rota la barra
+      return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
     });
   
-  // agrega los titulos (etiquetas)
+  // add date labels
   var tF = d3.timeFormat("%b %Y"),
       firstInMonth = {};
 
@@ -192,7 +192,7 @@ $(window).ready(function() {
     .style("text-anchor", "start")
     .style("font", "15px arial")
     .append("textPath")
-    // solo se agrega para el primero de cada mes
+    // only add for the first of each month
     .filter(function(d){
       var sd = tF(d.date);
       if (!firstInMonth[sd]){
@@ -204,7 +204,7 @@ $(window).ready(function() {
     .text(function(d){
       return d.top;
     })
-    // coloca texto a lo largo del espiral
+    // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", "blue")
     .attr("startOffset", function(d){
@@ -243,8 +243,9 @@ $(window).ready(function() {
   })
   //movimiento del recuadro
   .on('mousemove', function(d) {
-      tooltip.style('top', (d3.event.layerY + 10) + 'px')
-      .style('left', (d3.event.layerX - 25) + 'px');
+      tooltip.style('bottom', '10px')
+      .style('left', '250px')
+      .style('top','600px');
   })
   //Devuelve la estado inicial las barras y retira el cuadro de texto
   .on('mouseout', function(d) {
@@ -252,8 +253,8 @@ $(window).ready(function() {
       .style("fill", function(d){return color(d.colors);})
       .style("stroke", "none")
 
-      tooltip.style('display', 'none');
-      tooltip.style('opacity',0);
+      tooltip.style('display', 'block');
+      tooltip.style('opacity',2);
   });
       
 });
