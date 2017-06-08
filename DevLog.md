@@ -81,9 +81,5 @@ Taller de Construcción de Software
   
   - Porcentaje de alumnos que visualizaron la actividad.
   
-  
-  
-  
-  
-  
-  
+  - Promedio del porcentaje de actividades realizadas y completadas por alumno, en vez de % de aprobación y reprobación.
+  >___
