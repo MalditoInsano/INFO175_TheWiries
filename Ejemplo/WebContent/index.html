@@ -30,6 +30,9 @@
 			</div>
 			<div class="parl" id="down">
 				<h1>Filtros</h1>
+				<label>Por Grupo<input type="radio" name="op1" value="PG"></label>
+				<br>
+				<label>Por Tipo de Ejercicio<input type="radio" name="op2" value="PT"></label>
 				<h2>% Aprobación</h2>
 					<h2>% Reprobación</h2>
 					<h2># Intentos</h2>
@@ -40,8 +43,7 @@
     
 
 </body> 
-<!-- Creación del espiral de comparación, pero se genera debajo del resto, falta que funcione z-index (permite "profundidad") -->
-<body>
+<!-- Creación del espiral de comparación, pero se genera debajo del resto, falta que funcione z-index (permite "profundidad") --><body>
 	<!-- myCanvas genera el cuadro en el que se genera el espiral -->
     <canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;"></canvas>
     <script type="text/javascript">

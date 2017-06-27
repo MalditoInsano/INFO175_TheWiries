@@ -87,11 +87,12 @@ $(window).ready(function() {
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
   var points = d3.range(start, end + 0.001, (end - start) / 1000);
-
+ 
   var spiral = d3.radialLine()
     .curve(d3.curveCardinal)
     .angle(theta)
     .radius(radius);
+  
   //Genera la espiral a mostrar con el estilo especificado
   var path = svg.append("path")
     .datum(points)
@@ -99,16 +100,17 @@ $(window).ready(function() {
     .attr("d", spiral)
     .style("fill", "none") //le quita el relleno a la figura
     .style("stroke", "steelblue"); //color de línea
-  
   //Delimita los límites de la espiral, a partir de la cantidad
   //de info a mostrar (N)
   var spiralLength = path.node().getTotalLength(),
-      N = 168,
-      barWidth = (spiralLength / N) - 1;
+  N = 168,
+  barWidth = (spiralLength / N) - 1; 
+
+  
   //TestData es donde se almacena la información a desplegar
   var testData = [];
-  //cars contiene los nombres de cada tópico del curso
-  var cars = ["variables", "compilation", "ifs", "logicalOp", "loops", 
+  //topics contiene los nombres de cada tópico del curso
+  var topics = ["variables", "compilation", "ifs", "logicalOp", "loops", 
 	  "out format", "functions", "lists", "String", "dictionary",
 	  "RefValues", "Exception", "fileHandling", "class"];
   
@@ -117,7 +119,7 @@ $(window).ready(function() {
   // Esta se modificara una vez tengamos los servicios funcionando
   for (var i = 0; i < N/12; i++) {//topico
 	  for(var j=0; j<3; j++){//grupos
-		  for(var k=0;k<4;k++){//tipoEx
+		  for(var k=0;k<4;k++){//tipoExercise
 			var currentDate = new Date();
 			currentDate.setMonth(i);
 			currentDate.setDate(1+(8*j)+(2*k));
@@ -126,11 +128,12 @@ $(window).ready(function() {
 		  		value: Math.random()+0.3,
 		  		colors: k,
 		  		group:j+1,
-		  		top: cars[i]
+		  		top: topics[i]
 		  	});
 		  }
   	  }
   }
+  
   //Función encargada del procesamiento de fechas 
   //(Sólo influye en la posicion de despliegue de las barras en la espiral)
   var timeScale = d3.scaleTime()
@@ -227,18 +230,50 @@ $(window).ready(function() {
   //le agrega la función a todas las barras
   svg.selectAll("rect")
   .on('mouseover', function(d) {
+	  
 	  //Selecciona y muestra en el recuadro la siguiente info.
       tooltip.select('.value').html("Value: <b>" + Math.round(d.value*100)/100 + "<b>");
       tooltip.select('.top').html("tópico: <b>"+ d.top + "<b>");
       tooltip.select('.group').html("grupo: <b>"+ d.group + "<b>");
+      svg.selectAll("rect")
+      .style("opacity",0.5)
       //estilo del recuadro
-      d3.select(this)
-      .style("fill","#FFFFFF")
+     // svg.selectAll("rect").filter(function(e) { return e.group==d.group; })
+      svg.selectAll("rect").filter(function(e) { return e.colors==d.colors; })
+     // svg.selectAll("rect").filter(function(e) { return e.top==d.top; })
+      //.style("fill","#FFFFFF")
       .style("stroke","#000000")
-      .style("stroke-width","2px");
+      .style("stroke-width","1px")
+      .style("opacity",1);
 
       tooltip.style('display', 'block');
       tooltip.style('opacity',2);
+
+
+  var theta = function(r) {
+    return -2*Math.PI*r;
+  };
+
+  var arc = d3.svg.arc()
+    .startAngle(0)
+    .endAngle(2*Math.PI);
+  var angle = d3.scale.linear()
+    .domain([0,num_axes])
+    .range([0,360])
+
+  var svg2 = d3.select("#chart").append("svg2")
+      .attr("width", width)
+      .attr("height", height)
+    .append("g")
+      .attr("transform", "translate(" + width/2 + "," + (height/2+8) +")");
+
+  var pieces = d3.range(start, end+0.001, (end-start)/1000);
+
+  var spiral2 = d3.svg2.line.radial()
+    .interpolate("cardinal")
+    .angle(theta)
+    .radius(radius);
+      
 
   })
   //movimiento del recuadro
@@ -252,9 +287,11 @@ $(window).ready(function() {
       d3.selectAll("rect")
       .style("fill", function(d){return color(d.colors);})
       .style("stroke", "none")
-
+      
       tooltip.style('display', 'block');
-      tooltip.style('opacity',2);
+      tooltip.style('opacity',0);
+      svg.selectAll("rect")
+      .style("opacity",1);
   });
       
 });
