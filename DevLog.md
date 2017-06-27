@@ -55,19 +55,31 @@ Taller de Construcción de Software
   - Inicio del uso de MySQL, junto al uso de data.
   
   - Update de las especificaciones.
-
+  >___
+  
   ### 18/05/17 Notas:
 
   - Se nos entregan nuevas tareas: Visualización, Servicios y Documentación.
 
   - Complementamos tareas anteriores, actualizamos algunos % de avance.
-
+  >___
+  
   ### 25/05/17 Notas:
 
   - Revisamos nuestros avances y de acuerdo con ello, actualizamos la tabla de actvidades.
 
   - Recibimos retroalimentacion del profesor (usuario).
 
-  . Se crea nueva tarea: "Recuadro de informacion interactiva".
+  - Se crea nueva tarea: "Recuadro de informacion interactiva".
 
   - Se debe preparar la presentacion para el dia 01/06.
+  >___
+  
+  ### 08]/06/17 Notas Presentación:
+  
+  - En vez de aparecer "value" al hacer mouse over, indicar que significa.
+  
+  - Porcentaje de alumnos que visualizaron la actividad.
+  
+  - Promedio del porcentaje de actividades realizadas y completadas por alumno, en vez de % de aprobación y reprobación.
+  >___
