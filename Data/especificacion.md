@@ -62,7 +62,6 @@ select S.treatments_16 as n_group, A.topicname as id, count(*) as activity, coun
 from activity_traces A, student_info S 
 	where A.appid > -1 and S.userid = A.`user` 
 	group by S.treatments_16, A.topicname
-	order by S.treatments_16, A.topicorder
 	/**
 	* Quitamos la informacion que no nos era necesaria(movimientos en interfaz por ejemplo), y entrega
 	*ordenado por grupo y orden de topico.
