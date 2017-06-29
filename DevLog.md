@@ -75,7 +75,7 @@ Taller de Construcción de Software
   - Se debe preparar la presentacion para el dia 01/06.
   >___
   
-  ### 08]/06/17 Notas Presentación:
+  ### 08/06/17 Notas Presentación:
   
   - En vez de aparecer "value" al hacer mouse over, indicar que significa.
   
@@ -83,3 +83,13 @@ Taller de Construcción de Software
   
   - Promedio del porcentaje de actividades realizadas y completadas por alumno, en vez de % de aprobación y reprobación.
   >___
+
+  ### 29/6/17 Notas Presentación:
+  
+  - Implementar leyenda, incluyendo el significado de la altura (comó se esta midiendo).
+  
+  - Definir mejor que hacen los filtros.
+  
+  - Pautear la presentación para la demostración.
+  
+  - Idea posible: "Decir los values de las otras barras 'iluminadas' al hace mouseover".
