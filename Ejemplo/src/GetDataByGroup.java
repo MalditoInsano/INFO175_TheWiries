@@ -66,21 +66,17 @@ public class GetDataByGroup extends HttpServlet {
 		String outString = "[";
 		for(String[] row : data) {
 			outString += "\n "
-					+ "   {\"userid\":\"" + row[0]
-					+ "\", \"vis\":\"" + row[1]
-					+ "\", \"q_att\":\"" + row[2]
-					+ "\", \"q_att_succ\":\"" + row[3]
-					+ "\", \"p_att\":\"" + row[4]
-					+ "\", \"p_att_succ\":\"" + row[5]
-					+ "\", \"dist_e\":\"" + row[6]
-					+ "\", \"e_lines\":\"" + row[7]
-					+ "\", \"dist_ae\":\"" + row[8]
-					+ "\", \"ae	_lines\":\"" + row[9]
-					+ "\", \"q_time\":\"" + row[10]
-					+ "\", \"p_time\":\"" + row[11]
-					+ "\", \"e_time\":\"" + row[12]
-					+ "\", \"ae_time\":\"" + row[13]
+					+ "   {\"n_group\":\"" + row[0]
+					+ "\", \"id\":\"" + row[1]
+					+ "\", \"activity\":\"" + row[2]
+					+ "\", \"quizpet_act\":\"" + row[3]
+					+ "\", \"quizpet_act_correct\":\"" + row[4]
+					+ "\", \"parsons_act\":\"" + row[5]
+					+ "\", \"parsons_act_succ\":\"" + row[6]
+					+ "\", \"webex_act\":\"" + row[7]
+					+ "\", \"animatedexamples_act\":\"" + row[8]
 					+ "\"},";
+					
 		}
 		outString = outString.substring(0, outString.length() - 1);
 		outString += "\n]";
