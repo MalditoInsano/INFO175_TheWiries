@@ -22,21 +22,30 @@
 
 <body>
 	<center><div class="polig" id="p1"> 
-		<center><h1>Primera Pantalla</h1></center>
+		<center><h1>Condegram Spiral Plot</h1></center>
 		<div class="polig" id="p2">
 			<div class="parl" id="left">
 				<div id="working_area"></div>
 				<div id="chart"></div> 
 			</div>
 			<div class="parl" id="down">
-				<h1>Comparación Visual:</h1>
-				<label>Por Grupo<input type="radio" name="op1" value="PG"></label>
+				<h1>Selección Visual:</h1>
+				<label>Por Grupo<input type="radio" name="op1" value="PG" checked="checked"></label>
 				<br>
 				<label>Por Tipo de Ejercicio<input type="radio" name="op1" value="PT"></label>
-				<h1>Filtrar Información:</h1>
-				<label>Por % Visualizaciones<input type="radio" name="op2" value=""></label>
 				<br>
-				<label>Por % Realización individual <input type="radio" name="op2" value="PT"></label>
+				<label>Por Tipo de Ejercicio del mismo grupo<input type="radio" name="op1" value="PGT"></label>
+				<h1>Filtrar Información:</h1>
+				<label>Por Cantidad de Visualizaciones<input type="radio" name="op2" value=""></label>
+				<br>
+				<label>Por Desempeño<input type="radio" name="op2" value="PT"></label>
+				<p class="filters">
+				<h1>Despliegue:</h1>
+				<label>A Escala real<input type="radio" name="op3" value="AE" checked="checked"></label>
+				<br>
+				<label>Cómodo<input type="radio" name="op3" value="CO"></label>
+				<br>
+				</p>
 			</div>
 		</div>
 	</div></center>
