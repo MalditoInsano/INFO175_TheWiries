@@ -27,10 +27,10 @@ function displayData(res){
     
     // secuencialmente agregamos filas (<tr>) y celdas (<td>) a la
     // tabla "data_table".  
-    for (var i = 0; i < data.length; i++) {
+   /* for (var i = 0; i < data.length; i++) {
         var row = data[i];
         $( "#data_table" ).append( "<tr><td>" + row.userid + "</td>" + "<td>" + row.applabel + "</td>" + "<td>" + row.activitycount + "</td></tr>\n");
-    }
+    }*/
     
     $( "#working_area" ).append("</table>");
 }
@@ -59,12 +59,12 @@ $(window).ready(function() {
     loadData(); // llama a la función loadData más arriba
 //-------Código de visualización propiamente tal---------
     //Se definen las variables básicas de la espiral
-    var width = 700,
+    var width = 600,
     height = 500,
     start = 0,
     end = 2.25,
     numSpirals = 2.5
-    margin = {top:1000,bottom:50,left:50,right:50};
+    margin = {top:1000,bottom:50,left:0,right:50};
   
   var theta = function(r) {
     return numSpirals * Math.PI * r;
@@ -179,7 +179,7 @@ $(window).ready(function() {
 				  act= parseInt(gData[(14*i)+j].animatedexamples_act);
 			  }
 			  testData.push({
-				  tipo:"AE",
+				  tipo:"CO",
 				  date: currentDate,
 				  colors: k,
 				  group: parseInt(gData[(14*i)+j].n_group),
@@ -188,7 +188,7 @@ $(window).ready(function() {
 			  	  tvalue: act
 				  });
 			  testData.push({
-				  tipo:"CO",
+				  tipo:"AE",
 				  date: currentDate,
 				  colors: k,
 				  group: parseInt(gData[(14*i)+j].n_group),
@@ -291,7 +291,7 @@ $(window).ready(function() {
      $('input[name=op3]').click(function () {
     	   svg.selectAll("rect").style('display', 'none').style('opacity',0).style("stroke", "none");
     	   svg.selectAll("rect").filter(function(f){
-    		   return (f.tipo!=$('input[name=op3]:checked').val());
+    		   return (f.tipo==$('input[name=op3]:checked').val());
     	   })
     	   .style('display','block').style('opacity',1);
  
@@ -310,6 +310,8 @@ $(window).ready(function() {
   .attr('class', 'top')
   tooltip.append('div')
   .attr('class', 'group')
+ // tooltip.append('tipo')
+ // .attr('class','tipo')
   //le agrega la función a todas las barras
   svg.selectAll("rect")
   .on('mouseover', function(d) {
@@ -318,6 +320,8 @@ $(window).ready(function() {
       tooltip.select('.value').html("Visualizaciones: <b>" + d.tvalue + "<b>");
       tooltip.select('.top').html("tópico: <b>"+ d.top + "<b>");
       tooltip.select('.group').html("grupo: <b>"+ d.group + "<b>");
+     // tooltip.select('.tipo').html("tipo: <b>"+ d.tipo +"<b>");
+      
       var val2 = $('[name=op3]:checked').val();
       svg.selectAll("rect")/*.filter(function(e){
     		  return e.tipo==val2;
