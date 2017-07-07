@@ -17,23 +17,7 @@ var data = null;
  * contiene un arreglo con obetos JSON con los atributos userid, 
  * applabel y activitycount
  */
-function displayData(res){
-    data = res;
-    // para poner la información leida en la página web (index.html)
-    // accedemos al elemento con id working_area y le agregamos
-    // un elemento html de tipo table, que tiene a su vez el id
-    // "data_table".
-    $( "#working_area" ).append("<table id=\"data_table\">");
-    
-    // secuencialmente agregamos filas (<tr>) y celdas (<td>) a la
-    // tabla "data_table".  
-   /* for (var i = 0; i < data.length; i++) {
-        var row = data[i];
-        $( "#data_table" ).append( "<tr><td>" + row.userid + "</td>" + "<td>" + row.applabel + "</td>" + "<td>" + row.activitycount + "</td></tr>\n");
-    }*/
-    
-    $( "#working_area" ).append("</table>");
-}
+
 
 /**
  * Esta función usa la función getJSON de jquery para hacer una llamada
@@ -46,11 +30,59 @@ function displayData(res){
  * siguiente función. Esta es la forma como javascript secuencia llamadas 
  * asíncronas (leer un poco de AJAX sería bastante bueno!). 
  */
+var testData=[];
+var max = [531,1200,2707,1920];
+//topics contiene los nombres de cada tópico del curso
+var topics = {
+	  "variables":"0", "Comparison":"1", "if_statements":"2", "logical_operators":"3", "loops":"4", 
+	  "output_formatting":"5", "Functions":"6", "Lists":"7", "strings":"8", "dictionary":"9",
+	  "values_references":"10", "exceptions":"11", "file_handling":"12", "classes_objects":"13"};
+var exercise=["quizpet","parsons","webex","animatedex"]
 function loadData(){
-	var url = CONST.uriServer + "GetSampleData";
+	var url = CONST.uriServer + "GetDataByGroup";
     
-    $.getJSON( url , function(data){
-        displayData(data);
+    $.getJSON( url , function(gData){
+    	for(var i=0;i<3;i++){
+    		  for(var j=0;j<14;j++){
+    			  for(var k=0;k<4;k++){
+    				  var currentDate=new Date();
+    				  var mes = gData[(14*i)+j].id;
+    				  currentDate.setMonth(parseInt(topics[mes]));
+    				  currentDate.setDate(1+(8*i)+(2*k));
+    				  if(k==0){
+    					  var act= parseInt(gData[(14*i)+j].quizpet_act);  
+    				  }else if(k==1){
+    					  act= parseInt(gData[(14*i)+j].parsons_act)	;
+    				  }else if(k==2){
+    					  act= parseInt(gData[(14*i)+j].webex_act);
+    				  }else{
+    					  act= parseInt(gData[(14*i)+j].animatedexamples_act);
+    				  }
+    				  testData.push({
+    					  tipo:"CO",
+    					  date: currentDate,
+    					  colors: k,
+    					  group: parseInt(gData[(14*i)+j].n_group),
+    					  top: mes,
+    					  value: (act*2/max[k])+0.3,
+    					  exer: exercise[k],
+    				  	  tvalue: act,
+    				  	  maxa:max[k]
+    					  });
+    				  testData.push({
+    					  tipo:"AE",
+    					  date: currentDate,
+    					  colors: k,
+    					  group: parseInt(gData[(14*i)+j].n_group),
+    					  top: mes,
+    					  value: (act*2)/max[2],
+    					  exer: exercise[k],
+    				  	  tvalue: act,
+    				  	  maxa: max[2]
+    					  });
+    			  }
+    		  }
+    	  	}
     });
 }
 
@@ -152,13 +184,7 @@ $(window).ready(function() {
 	    {"n_group":"3", "id":"values_references", "activity":"370", "quizpet_act":"112", "quizpet_act_succ":"55", "parsons_act":"20", "parsons_act_succ":"14", "webex_act":"85", "animatedexamples_act":"153"},
 	    {"n_group":"3", "id":"variables", "activity":"6055", "quizpet_act":"531", "quizpet_act_succ":"373", "parsons_act":"1200", "parsons_act_succ":"341", "webex_act":"2707", "animatedexamples_act":"1617"}
 	]
-  var testData=[];
-  var max = [531,1200,2707,1920];
-  //topics contiene los nombres de cada tópico del curso
-  var topics = {
-	  "variables":"0", "Comparison":"1", "if_statements":"2", "logical_operators":"3", "loops":"4", 
-	  "output_formatting":"5", "Functions":"6", "Lists":"7", "strings":"8", "dictionary":"9",
-	  "values_references":"10", "exceptions":"11", "file_handling":"12", "classes_objects":"13"};
+  
   
   // Ciclo iterativo encargado que procesa la información del json
   // a desplegar en la visualización
@@ -184,8 +210,10 @@ $(window).ready(function() {
 				  colors: k,
 				  group: parseInt(gData[(14*i)+j].n_group),
 				  top: mes,
-				  value: act/max[k],
-			  	  tvalue: act
+				  value: (act*2/max[k])+0.3,
+				  exer: exercise[k],
+			  	  tvalue: act,
+			  	  maxa:max[k]
 				  });
 			  testData.push({
 				  tipo:"AE",
@@ -193,8 +221,10 @@ $(window).ready(function() {
 				  colors: k,
 				  group: parseInt(gData[(14*i)+j].n_group),
 				  top: mes,
-				  value: (act*2)/max[3],
-			  	  tvalue: act
+				  value: (act*2)/max[2],
+				  exer: exercise[k],
+			  	  tvalue: act,
+			  	  maxa: max[2]
 				  });
 		  }
 	  }
@@ -310,17 +340,17 @@ $(window).ready(function() {
   .attr('class', 'top')
   tooltip.append('div')
   .attr('class', 'group')
- // tooltip.append('tipo')
- // .attr('class','tipo')
+  tooltip.append('tipo')
+  .attr('class','tipo')
   //le agrega la función a todas las barras
   svg.selectAll("rect")
   .on('mouseover', function(d) {
 	  
 	  //Selecciona y muestra en el recuadro la siguiente info.
-      tooltip.select('.value').html("Visualizaciones: <b>" + d.tvalue + "<b>");
+      tooltip.select('.value').html("Visualizaciones: <b>" + d.tvalue + "<b>/"+d.maxa);
       tooltip.select('.top').html("tópico: <b>"+ d.top + "<b>");
       tooltip.select('.group').html("grupo: <b>"+ d.group + "<b>");
-     // tooltip.select('.tipo').html("tipo: <b>"+ d.tipo +"<b>");
+      tooltip.select('.tipo').html("tipo Ex: <b>"+ d.exer +"<b>");
       
       var val2 = $('[name=op3]:checked').val();
       svg.selectAll("rect")/*.filter(function(e){
