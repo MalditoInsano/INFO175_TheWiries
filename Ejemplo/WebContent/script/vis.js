@@ -8,9 +8,6 @@
 var CONST = {
   uriServer  : "http://localhost:8080/Ejemplo/"  
 };
-
-var data = null;
-
 /**
  * Esta función se llama en el call-back de getJSON en loadData
  * @param res representa la data leida del servicio. Se asume que 
@@ -37,58 +34,65 @@ var topics = {
 	  "variables":"0", "Comparison":"1", "if_statements":"2", "logical_operators":"3", "loops":"4", 
 	  "output_formatting":"5", "Functions":"6", "Lists":"7", "strings":"8", "dictionary":"9",
 	  "values_references":"10", "exceptions":"11", "file_handling":"12", "classes_objects":"13"};
-var exercise=["quizpet","parsons","webex","animatedex"]
+var exercise=["quizpet","parsons","webex","animatedex"];
 function loadData(){
-	var url = CONST.uriServer + "GetDataByGroup";
-    
-    $.getJSON( url , function(gData){
-    	for(var i=0;i<3;i++){
-    		  for(var j=0;j<14;j++){
-    			  for(var k=0;k<4;k++){
-    				  var currentDate=new Date();
-    				  var mes = gData[(14*i)+j].id;
-    				  currentDate.setMonth(parseInt(topics[mes]));
-    				  currentDate.setDate(1+(8*i)+(2*k));
-    				  if(k==0){
-    					  var act= parseInt(gData[(14*i)+j].quizpet_act);  
-    				  }else if(k==1){
-    					  act= parseInt(gData[(14*i)+j].parsons_act)	;
-    				  }else if(k==2){
-    					  act= parseInt(gData[(14*i)+j].webex_act);
-    				  }else{
-    					  act= parseInt(gData[(14*i)+j].animatedexamples_act);
-    				  }
-    				  testData.push({
-    					  tipo:"CO",
-    					  date: currentDate,
-    					  colors: k,
-    					  group: parseInt(gData[(14*i)+j].n_group),
-    					  top: mes,
-    					  value: (act*2/max[k])+0.3,
-    					  exer: exercise[k],
-    				  	  tvalue: act,
-    				  	  maxa:max[k]
-    					  });
-    				  testData.push({
-    					  tipo:"AE",
-    					  date: currentDate,
-    					  colors: k,
-    					  group: parseInt(gData[(14*i)+j].n_group),
-    					  top: mes,
-    					  value: (act*2)/max[2],
-    					  exer: exercise[k],
-    				  	  tvalue: act,
-    				  	  maxa: max[2]
-    					  });
-    			  }
-    		  }
-    	  	}
-    });
+	var route = "http://146.83.216.206/INFO175_Servicios/GetDataByGroup";
+	$.ajax({
+		url:route,
+		async:false,
+		dataType:"json",
+		type:"get",
+		success:function(data){
+			$(data).each(function(index,value){
+			for(var i=0;i<4;i++){
+				var currentDate=new Date();
+				var mes = value.id;
+				currentDate.setMonth(parseInt(topics[mes]));
+				currentDate.setDate(1 + (2*i) + (8*(parseInt(value.n_group) - 1)));
+				if(i==0){
+					  var act= parseInt(value.quizpet_act);  
+				  }else if(i==1){
+					  act= parseInt(value.parsons_act)	;
+				  }else if(i==2){
+					  act= parseInt(value.webex_act);
+				  }else{
+					  act= parseInt(value.animatedexamples_act);
+				  }
+				
+				testData.push({
+					tipo:"CO",
+					date: currentDate,
+					colors: i,
+					group: parseInt(value.n_group),
+					top:mes,
+					value: (act*2/max[i])+0.3,
+					exer: exercise[i],
+					tvalue: act,
+					maxa:max[i]
+				})
+				testData.push({
+					tipo:"AE",
+					date: currentDate,
+					colors: i,
+					group: parseInt(value.n_group),
+					top:mes,
+					value: (act*2/max[2]),
+					exer: exercise[i],
+					tvalue: act,
+					maxa:max[2]
+				})
+			
+			}
+		})
+	}
+	
+	});
 }
 
 
 $(window).ready(function() {
-    loadData(); // llama a la función loadData más arriba
+   
+	loadData(); // llama a la función loadData más arriba
 //-------Código de visualización propiamente tal---------
     //Se definen las variables básicas de la espiral
     var width = 600,
@@ -140,7 +144,7 @@ $(window).ready(function() {
 
   
   //TestData es donde se almacena la información a desplegar
-  var gData = [
+  /*var gData = [
 	  	{"n_group":"1", "id":"classes_objects", "activity":"812", "quizpet_act":"125", "quizpet_act_succ":"69", "parsons_act":"77", "parsons_act_succ":"28", "webex_act":"125", "animatedexamples_act":"485"},
 	    {"n_group":"1", "id":"Comparison", "activity":"1044", "quizpet_act":"158", "quizpet_act_succ":"89", "parsons_act":"255", "parsons_act_succ":"177", "webex_act":"232", "animatedexamples_act":"399"},
 	    {"n_group":"1", "id":"dictionary", "activity":"850", "quizpet_act":"84", "quizpet_act_succ":"58", "parsons_act":"111", "parsons_act_succ":"78", "webex_act":"105", "animatedexamples_act":"550"},
@@ -183,53 +187,8 @@ $(window).ready(function() {
 	    {"n_group":"3", "id":"strings", "activity":"300", "quizpet_act":"123", "quizpet_act_succ":"47", "parsons_act":"53", "parsons_act_succ":"36", "webex_act":"58", "animatedexamples_act":"66"},
 	    {"n_group":"3", "id":"values_references", "activity":"370", "quizpet_act":"112", "quizpet_act_succ":"55", "parsons_act":"20", "parsons_act_succ":"14", "webex_act":"85", "animatedexamples_act":"153"},
 	    {"n_group":"3", "id":"variables", "activity":"6055", "quizpet_act":"531", "quizpet_act_succ":"373", "parsons_act":"1200", "parsons_act_succ":"341", "webex_act":"2707", "animatedexamples_act":"1617"}
-	]
-  
-  
-  // Ciclo iterativo encargado que procesa la información del json
-  // a desplegar en la visualización
-  	for(var i=0;i<3;i++){
-	  for(var j=0;j<14;j++){
-		  for(var k=0;k<4;k++){
-			  var currentDate=new Date();
-			  var mes = gData[(14*i)+j].id;
-			  currentDate.setMonth(parseInt(topics[mes]));
-			  currentDate.setDate(1+(8*i)+(2*k));
-			  if(k==0){
-				  var act= parseInt(gData[(14*i)+j].quizpet_act);  
-			  }else if(k==1){
-				  act= parseInt(gData[(14*i)+j].parsons_act)	;
-			  }else if(k==2){
-				  act= parseInt(gData[(14*i)+j].webex_act);
-			  }else{
-				  act= parseInt(gData[(14*i)+j].animatedexamples_act);
-			  }
-			  testData.push({
-				  tipo:"CO",
-				  date: currentDate,
-				  colors: k,
-				  group: parseInt(gData[(14*i)+j].n_group),
-				  top: mes,
-				  value: (act*2/max[k])+0.3,
-				  exer: exercise[k],
-			  	  tvalue: act,
-			  	  maxa:max[k]
-				  });
-			  testData.push({
-				  tipo:"AE",
-				  date: currentDate,
-				  colors: k,
-				  group: parseInt(gData[(14*i)+j].n_group),
-				  top: mes,
-				  value: (act*2)/max[2],
-				  exer: exercise[k],
-			  	  tvalue: act,
-			  	  maxa: max[2]
-				  });
-		  }
-	  }
-  	}
-  
+	]*/
+ 
   //Función encargada del procesamiento de fechas 
   //(Sólo influye en la posicion de despliegue de las barras en la espiral)
   var timeScale = d3.scaleTime()
@@ -247,8 +206,7 @@ $(window).ready(function() {
     .range([0, (r / numSpirals) - 40]);
   
   //Genera las barras de acuerdo a la data ingresada
- 
-
+  console.log("<283");
   svg.selectAll("rect")
     .data(testData)
     .enter()
@@ -290,7 +248,7 @@ $(window).ready(function() {
   // add date labels
   var tF = d3.timeFormat("%b %Y"),
       firstInMonth = {};
-
+  console.log("<325");
   svg.selectAll("text")
     .data(testData)
     .enter()
