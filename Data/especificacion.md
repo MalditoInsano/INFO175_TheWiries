@@ -52,7 +52,8 @@ El servicio resume la información de actividades de los distintos tipos por gru
 ### Consulta SQL
 
 ```Sql
-select S.treatments_16 as n_group, A.topicname as id, count(*) as activity, count(distinct(A.`user`)) as `users`,
+select S.treatments_16 as n_group, A.topicname as id, count(*) as activity, 
+	count(distinct(A.`user`)) as `users`,
 	sum(if(A.appid=41,1,0)) as quizpet_act, 
 	sum(if(A.appid=41 and  A.result=1,1,0)) as quizpet_act_correct,
 	sum(if(A.appid=38,1,0)) as parsons_act, 
