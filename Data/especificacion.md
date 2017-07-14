@@ -8,36 +8,40 @@ El servicio resume la información de actividades de los distintos tipos por gru
 
 ```javascript
 [
-	Topico
+	Informacion
 	...
 ]
 
-//Topico object
-{
-	"id": "",
-	"grupo": [Grupo,
-		  ...
-		 ]
-}
-
-
-//Grupo object
+//Informacion object
 {
 	/**
 	* Número del grupo, con el fin de identificar más facilmente entre ellos.
 	*/
-	"n_group"= "" 
+	"n_group"= "",
+	
+	/*
+	* id que identifica el nombre de cada topico respectivamente.
+	*/
+	"id": "",
+	
+	/*
+	* Cantidad total de actividad para el grupo 'n_group' y el topico 'id'
+	*/
+	"activity": "",
+	
 	/**
 	* Cantidad de quizpet intentados y exitosos respectivamente.
 	*/
 	"quizpet_act": "",
 	"quizpet_act_succ": "",
+	
 	/**
 	* Número de actividades parsons intentados y exitosos respectivamente.
 	*/
 	"parsons_act": "",
 	"parsons_act_succ": "",
 	/**
+	
 	* Cantidad de Web examples y Animated Examples vistos por completo.
 	*/
 	"webex_act": "",
